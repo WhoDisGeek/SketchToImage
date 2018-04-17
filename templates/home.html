@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Project {% endblock %}
+
+{% block scriptandstylepage %}
+
+<script src="{% static "script.js" %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <script>
+
+    uploadUrl= "{% url 'app:upload_sketch' %}"
+    executeUrl = "{% url 'app:execute' %}"
+    </script>
+{% endblock %}
+
+{% block pageheader %}SKETCH TO IMAGE {% endblock %}
+
+{% block content %}
+
+{#{% if user.is_authenticated %}#}
+    <div id="dashboard" name="dashboard" class="container-fluid">
+        <div class="col-sm-5 left_side">
+            <form class="fc form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">UPLOAD SKETCH</label>
+                    <input type="file" accept=".jpg, .jpeg, .png" class="fc1 col-sm-10" name="sketch" id="sketch" required="True" class="form-control-file">
+                </div>
+            </form>
+            <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-left: 90px;">
+                <button id="upload" name="upload" onclick="uploadFiles(event)" class="abc btn btn-primary btn-lg js-upload-photos" > <span class="glyphicon glyphicon-cloud-upload" style="margin-right:5px;"></span>Upload </button>
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="execute" style="margin-right: 50px;" name="execute" onclick="execute(event)" class="abc btn btn-primary btn-lg" > Execute </button>
+            <br>
+            <br>
+            </div>
+
+
+
+    </div>
+{#{% else %}#}
+{#<p>You are not logged in</p>#}
+{#<a href="{% url 'accounts:login' %}">login</a>#}
+{#{% endif %}#}
+
+ {% endblock %}

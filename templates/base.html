@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% block scriptandstylepage %} {% endblock %}
+</head>
+
+<body background="{% static '****.jpg'%}" class="bg-body">
+  <!-- Header -->
+    <nav class="navbar navbar-light bg-faded">
+        <a class="navbar-brand">
+    <img src="{% static 'logo.png' %}" width="150" height="50" alt="">
+  </a>
+    </nav>
+    <!-- Body -->
+    <div class="page-header">
+        <h1><center>
+{% block pageheader %}{% endblock %}
+            </center></h1>
+        <div>            <nav class="navbar bg-primary">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav sidebar-nav">
+                        <li class="nav-item"><a style="text-decoration-line:none" class="nav-link" href={% url 'home' %}><span class="glyphicon glyphicon-home"></span><br>Home</a></li>
+{#                        {% block nextpage %} {% endblock %}#}
+                    </ul>
+{#                    <ul class="nav navbar-nav navbar-right">#}
+{#                        {% if user.is_authenticated %}#}
+{#                        <li class="nav-item"><span class="glyphicon glyphicon-user"></span>#}
+{#                            <h4>{{ user.get_username }}</h4></li>#}
+{#                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout'%}"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>#}
+{#                        {% else %}#}
+{#                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>#}
+{#                        {% endif %}#}
+{#                    </ul>#}
+                </div>
+            </nav>
+        </div>
+        <br/>
+        <br/> {% block extradetails %} {% endblock %}
+    </div>
+    <br>
+    <div>
+        {% block content %} {% endblock %}
+    </div>
+</body>
+
+</html>
