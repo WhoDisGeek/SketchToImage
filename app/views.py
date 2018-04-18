@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from app.sketch_recognizer.controller import SketchRecognizer
 
+
 @csrf_exempt
 def upload_sketch(request):
     if request.method == 'POST':
