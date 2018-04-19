@@ -1,2 +1,2 @@
-# SketchTomImage
-FInal Sem Project 
+# SketchToImage
+Final Sem Project 
