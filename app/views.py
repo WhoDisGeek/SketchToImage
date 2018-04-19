@@ -9,6 +9,7 @@ from django.conf import settings
 # upload the sketch and store it some place where
 from django.views.decorators.csrf import csrf_exempt
 
+from SketchToImage.settings import BASE_DIR
 from app.sketch_recognizer.controller import SketchRecognizer
 
 
@@ -16,9 +17,9 @@ from app.sketch_recognizer.controller import SketchRecognizer
 def upload_sketch(request):
     if request.method == 'POST':
         settings.SKETCH_FILE_NAME = '1.jpg'
-        upload_path = os.path.join(settings.MEDIA_ROOT + 'input_sketches')
+        upload_path = os.path.join(BASE_DIR, settings.MEDIA_ROOT, 'input_sketches')
         try:
-            os.chdir(upload_path)
+            os.path.exists(upload_path)
         except Exception as e:
             print(e)
             os.mkdir(upload_path)
@@ -31,9 +32,9 @@ def upload_sketch(request):
         response = None
         # SketchRecognizer.recognize(settings.SKETCH_FILE_NAME)
 
-    return JsonResponse({"success": "true", "images_list": "this is a list [1.jpg,2.jpg]"})
+    return JsonResponse({"success": "true", "images_list": ['1', '2', '3']})
 
 
 @csrf_exempt
 def execute(request):
-    return JsonResponse({"success": "true", "images_list": "this is a list [1.jpg,2.jpg]"})
+    return JsonResponse({"success": "true", "images_list": ['1', '2', '3']})

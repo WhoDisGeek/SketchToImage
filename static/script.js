@@ -72,7 +72,7 @@ function execute(event) {
 
             if (data["success"] === "true") {
                 files = null;
-                $('#dashboard').append('<div>Execute Success<br/>'+data['images_list']+'</div>');
+                $('#dashboard').append('<div>Execute Success<br/>'+data['images_list'].toString()+'</div>');
 
 
 
