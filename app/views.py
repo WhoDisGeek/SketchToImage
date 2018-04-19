@@ -29,12 +29,12 @@ def upload_sketch(request):
         default_storage.save(
             os.path.join(upload_path, settings.SKETCH_FILE_NAME), ContentFile(
                 request.FILES['sketch'].read()))
-        response = None
-        # SketchRecognizer.recognize(settings.SKETCH_FILE_NAME)
 
-    return JsonResponse({"success": "true", "images_list": ['1', '2', '3']})
+    return JsonResponse({"success": "true", "images_list": ['1']})
 
 
 @csrf_exempt
 def execute(request):
-    return JsonResponse({"success": "true", "images_list": ['1', '2', '3']})
+    SketchRecognizer.recognize(settings.SKETCH_FILE_NAME)
+
+    return JsonResponse({"success": "true", "images_list": ['1']})

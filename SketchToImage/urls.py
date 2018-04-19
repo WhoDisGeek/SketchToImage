@@ -21,6 +21,7 @@ from SketchToImage import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('app/', include('app.urls', namespace='app') ),
+    path('app/', include('app.urls', namespace='app')),
     url(r'^$', views.home_view, name='home'),
+    url(r'^img/(?P<img_name>\w+)', views.return_image, name='return_image')
 ]
