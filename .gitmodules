@@ -1,3 +1,6 @@
 [submodule "app/image_generator/generator"]
 	path = app/image_generator/generator
 	url = https://github.com/SHANKARMB/DCGAN-tensorflow.git
+[submodule "image_generator/generator"]
+	path = image_generator/generator
+	url = https://github.com/SHANKARMB/DCGAN-tensorflow.git
