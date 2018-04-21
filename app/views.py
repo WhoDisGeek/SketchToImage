@@ -9,7 +9,7 @@ from django.conf import settings
 # upload the sketch and store it some place where
 from django.views.decorators.csrf import csrf_exempt
 
-from SketchToImage.settings import BASE_DIR
+from sketchtoimage.settings import BASE_DIR
 from app.sketch_recognizer.controller import SketchRecognizer
 
 

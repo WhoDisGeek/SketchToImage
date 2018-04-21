@@ -1,0 +1,10 @@
+airplane
+hot-air_balloon
+snake
+pineapple
+butterfly
+knife
+wine_bottle
+apple
+hamburger
+scissors
