@@ -21,7 +21,8 @@
 
 {#{% if user.is_authenticated %}#}
     <div id="dashboard" name="dashboard" class="container-fluid">
-        <div class="col-sm-5 left_side">
+        <div class="row">
+            <div class="col-sm-5 left_side">
             <form class="fc form-horizontal">
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">UPLOAD SKETCH</label>
@@ -35,14 +36,31 @@
             <br>
             <br>
             </div>
-        <div id="outputimagediv" class="col-lg-5 right">
+        </div>
+
+        <div class="row">
+            <div id="inputimagediv" class="col-lg-4">
             <h5>
-                Realistic Images
+                Input Images
             </h5>
 
 
         </div>
+            <div id="targetimagediv" class="col-lg-4">
+                <h5>
+                    Target Images
+                </h5>
 
+
+            </div>
+            <div id="outputimagediv" class="col-lg-4">
+            <h5>
+                Output Images
+            </h5>
+
+
+        </div>
+        </div>
 
 
     </div>

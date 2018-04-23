@@ -31,9 +31,9 @@ function uploadFiles(event) {
             if (data["success"] === "true") {
 
                     $('#dashboard').append('<div>Upload Success<br/></div>');
-                    var img = $('<img id='+'\'uploadImage\''+' height="256" width="256">'); //Equivalent: $(document.createElement('img'))
-                    img.attr('src', 'img/1.jpg');
-                    img.appendTo('#outputimagediv');
+                    var img = $('<img id='+'\'uploadImage\''+' height="128" width="128">'); //Equivalent: $(document.createElement('img'))
+                    img.attr('src', 'img/ip/'+data['input_image']);
+                    img.appendTo('#inputimagediv');
 
             }
             else {
@@ -70,10 +70,16 @@ function execute(event) {
 
             if (data["success"] === "true") {
                 files = null;
-                $('#dashboard').append('<div>Execute Success<br/>'+data['images_list'].toString()+'</div>');
-                for (i=0;i<data['images_list'].length;i++) {
-                    var img = $('<img id="image"+i height="256" width="256">'); //Equivalent: $(document.createElement('img'))
-                    img.attr('src', 'img/'+data['images_list'][i]);
+                $('#dashboard').append('<div>Execute Success<br/></div>');
+                for (i=0;i<data['target_images_list'].length;i++) {
+                    var img = $('<img id="image_target"+i height="128" width="128">'); //Equivalent: $(document.createElement('img'))
+                    img.attr('src', 'img/target/'+data['target_images_list'][i]);
+                    img.appendTo('#targetimagediv');
+                }
+
+                for (i=0;i<data['output_images_list'].length;i++) {
+                    var img = $('<img id="image_output"+i height="128" width="128">'); //Equivalent: $(document.createElement('img'))
+                    img.attr('src', 'img/op/'+data['output_images_list'][i]);
                     img.appendTo('#outputimagediv');
                 }
 

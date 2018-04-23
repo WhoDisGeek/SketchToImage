@@ -10,14 +10,20 @@ def home_view(request):
     return render(request, 'home.html', {})
 
 
-def return_image(request, img_name='2'):
+def return_image(request, type=None, img_name='2'):
     if request.method == 'GET':
         print(img_name)
-        img_name = '1'
-        print(os.path.join(BASE_DIR, MEDIA_ROOT, 'input_sketches', img_name + str('.jpg')))
+        image_path = ''
+        if type == 'ip':
+            image_path = os.path.join(BASE_DIR, MEDIA_ROOT, 'input_sketches', img_name)
+        elif type == 'op':
+            image_path = os.path.join(BASE_DIR, MEDIA_ROOT, 'output_sketches', img_name)
+        elif type == 'target':
+            image_path = os.path.join(BASE_DIR, MEDIA_ROOT, 'cnn1_output', img_name)
+
         try:
 
-            with open(os.path.join(BASE_DIR, MEDIA_ROOT, 'input_sketches', img_name + str('.jpg')), "rb") as f:
+            with open(image_path, "rb") as f:
                 return HttpResponse(f.read(), content_type="image/jpeg")
         except IOError:
             red = Image.new('RGBA', (1, 1), (255, 0, 0, 0))

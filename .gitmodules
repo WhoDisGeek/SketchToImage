@@ -4,3 +4,6 @@
 [submodule "image_generator/generator"]
 	path = image_generator/generator
 	url = https://github.com/SHANKARMB/DCGAN-tensorflow.git
+[submodule "app/sketch_recognizer/recognizer"]
+	path = app/sketch_recognizer/recognizer
+	url = https://github.com/varunlpai/Image-Classifier.git
