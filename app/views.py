@@ -12,9 +12,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from sketchtoimage.settings import BASE_DIR
 
-# from app.sketch_recognizer.controller import recognize
-# from app.image_generator.controller import generate
-# from app.image_comparer.controller import compare
+from app.sketch_recognizer.controller import recognize
+from app.image_generator.controller import generate
+from app.image_comparer.controller import compare
 
 
 @csrf_exempt
@@ -54,13 +54,20 @@ def execute(request):
     # generator_response = generate(classname=recognizer_response['classname'])
     #
     # # returns a dict with output_images_list as key
-    # comparer_response = compare(gen_images_list=generator_response['gen_images_list'])
+    # comparer_response = compare(
+    #                             target_images_list=recognizer_response['target_images_list'],
+    #                             gen_images_list=generator_response['gen_images_list']
+    # )
     # return JsonResponse(
     #     {
     #         "success": "true",
     #         "target_images_list": recognizer_response['target_images_list'],
     #         "output_images_list": comparer_response['output_images_list']
     #     })
+    comparer_response = compare(
+        target_images_list=['target_airplane_4201.jpg', 'target_airplane_8732.jpg'],
+        gen_images_list=['gen_airplane_8241.jpg', 'gen_airplane_2347.jpg']
+    )
 
     return JsonResponse({
         "success": "true",

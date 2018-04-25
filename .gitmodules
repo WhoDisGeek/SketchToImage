@@ -7,3 +7,6 @@
 [submodule "app/sketch_recognizer/recognizer"]
 	path = app/sketch_recognizer/recognizer
 	url = https://github.com/varunlpai/Image-Classifier.git
+[submodule "app/image_comparer/feature_vector"]
+	path = app/image_comparer/feature_vector
+	url = https://github.com/SHANKARMB/TF_FeatureExtraction.git
