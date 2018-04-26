@@ -1,6 +1,6 @@
 import os
 
-from sketchtoimage.settings import MEDIA_ROOT, BASE_DIR
+from sketchtoimage.settings import MEDIA_ROOT, BASE_DIR, SKETCH_FILE_NAME
 
 # import os
 # if 'PYTHONPATH' not in os.environ:
@@ -16,7 +16,11 @@ def compare(gen_images_list, target_images_list):
     gen_images_list = [os.path.join(BASE_DIR, MEDIA_ROOT, 'gen_output', i) for i in gen_images_list]
     target_images_list = [os.path.join(BASE_DIR, MEDIA_ROOT, 'cnn1_output', i) for i in target_images_list]
     all_images = gen_images_list + target_images_list
-    feature_dataset = feat_extract_main(all_images=all_images)
+    out_file_name = SKETCH_FILE_NAME.split('.')[0] + '.h5'
+    feature_dataset = feat_extract_main(
+        all_images=all_images,
+        out_file=os.path.join(BASE_DIR, MEDIA_ROOT, 'feature_vectors', out_file_name)
+    )
     print('feature_dataset is .. ', feature_dataset)
     # images_list = nearest_to_target(gen_images_list=gen_images_list,
     #                                 target_images_list=target_images_list,
