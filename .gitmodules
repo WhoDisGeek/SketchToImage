@@ -4,3 +4,6 @@
 [submodule "app/image_comparer/feature_vector"]
 	path = app/image_comparer/feature_vector
 	url = https://github.com/SHANKARMB/TF_FeatureExtraction.git
+[submodule "app/image_generator/generator"]
+	path = app/image_generator/generator
+	url = https://github.com/SHANKARMB/DCGAN-tensorflow.git

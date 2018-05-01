@@ -47,30 +47,115 @@ def upload_sketch(request):
 
 @csrf_exempt
 def execute(request):
-    # # returns a dict with classname and target_images_list as keys
-    # recognizer_response = recognize(filename=settings.SKETCH_FILE_NAME)
+    try:
+        # returns a dict with classname and target_images_list as keys
+        recognizer_response = recognize(filename=settings.SKETCH_FILE_NAME)
+    except Exception as ex:
+        print('Crap... Exception in Recognizer..')
+        print(ex)
+        return JsonResponse({
+            "success": "false",
+            "target_images_list": [],
+            "output_images_list": []
+        })
+
+    try:
+        # returns a dict with gen_images_list as key
+        generator_response = generate(classname=recognizer_response['classname'])
+    except Exception as ex:
+        print('Crap... Exception in Generator..')
+        print(ex)
+        return JsonResponse({
+            "success": "false",
+            "target_images_list": recognizer_response['target_images_list'],
+            "output_images_list": []
+        })
+
+    # recognizer_response = {'target_images_list': ["target_airplane_n02691156_58.jpg",
+    #                                               "target_airplane_n02691156_1074.jpg",
+    #                                               "target_airplane_n02691156_1512.jpg",
+    #                                               "target_airplane_n02691156_2377.jpg",
+    #                                               "target_airplane_n02691156_5583.jpg",
+    #                                               "target_airplane_n02691156_7476.jpg",
+    #                                               "target_airplane_n02691156_9245.jpg",
+    #                                               "target_airplane_n02691156_9916.jpg",
+    #                                               "target_airplane_n02691156_10578.jpg",
+    #                                               "target_airplane_n02691156_53586.jpg"]}
+    # generator_response = {'gen_images_list': ["gen_airplane9_0.png",
+    #                                           "gen_airplane9_1.png",
+    #                                           "gen_airplane9_2.png",
+    #                                           "gen_airplane9_3.png",
+    #                                           "gen_airplane9_4.png",
+    #                                           "gen_airplane9_5.png",
+    #                                           "gen_airplane9_6.png",
+    #                                           "gen_airplane9_7.png",
+    #                                           "gen_airplane9_8.png",
+    #                                           "gen_airplane9_9.png",
+    #                                           "gen_airplane9_10.png",
+    #                                           "gen_airplane9_11.png",
+    #                                           "gen_airplane9_12.png",
+    #                                           "gen_airplane9_13.png",
+    #                                           "gen_airplane9_14.png",
+    #                                           "gen_airplane9_15.png"]}
+
+    try:
+
+        # returns a dict with output_images_list as key
+        comparer_response = compare(
+            target_images_list=recognizer_response['target_images_list'],
+            gen_images_list=generator_response['gen_images_list']
+        )
+    except Exception as ex:
+        print(ex)
+        print('Crap... Exception in Comparer..')
+        return JsonResponse(
+            {
+                "success": "false",
+                "target_images_list": recognizer_response['target_images_list'],
+                "output_images_list": generator_response['gen_images_list']
+            })
+
+    return JsonResponse(
+        {
+            "success": "true",
+            "target_images_list": recognizer_response['target_images_list'],
+            "output_images_list": comparer_response['output_images_list']
+        })
+
+
     #
-    # # returns a dict with gen_images_list as key
-    # generator_response = generate(classname=recognizer_response['classname'])
-    #
-    # # returns a dict with output_images_list as key
-    # comparer_response = compare(
-    #                             target_images_list=recognizer_response['target_images_list'],
-    #                             gen_images_list=generator_response['gen_images_list']
-    # )
+
+    # generator_response = {'gen_images_list': ["gen_airplane9_0.png",
+    #                                           "gen_airplane9_1.png",
+    #                                           "gen_airplane9_2.png",
+    #                                           "gen_airplane9_3.png",
+    #                                           "gen_airplane9_4.png",
+    #                                           "gen_airplane9_5.png",
+    #                                           "gen_airplane9_6.png",
+    #                                           "gen_airplane9_7.png",
+    #                                           "gen_airplane9_8.png",
+    #                                           "gen_airplane9_9.png",
+    #                                           "gen_airplane9_10.png",
+    #                                           "gen_airplane9_11.png",
+    #                                           "gen_airplane9_12.png",
+    #                                           "gen_airplane9_13.png",
+    #                                           "gen_airplane9_14.png",
+    #                                           "gen_airplane9_15.png"]}
+
     # return JsonResponse(
     #     {
     #         "success": "true",
     #         "target_images_list": recognizer_response['target_images_list'],
-    #         "output_images_list": comparer_response['output_images_list']
+    #         "output_images_list": generator_response['gen_images_list']
     #     })
-    comparer_response = compare(
-        target_images_list=['target_airplane_4201.jpg', 'target_airplane_8732.jpg'],
-        gen_images_list=['gen_airplane_8241.jpg', 'gen_airplane_2347.jpg']
-    )
 
-    return JsonResponse({
-        "success": "true",
-        "target_images_list": ['target_1010.jpg', 'target_1233.jpg'],
-        "output_images_list": ['op_3061.jpg', 'op_8273.jpg']
-    })
+    # comparer_response = compare(
+    #     target_images_list=['target_airplane_4201.jpg', 'target_airplane_8732.jpg'],
+    #     gen_images_list=['gen_airplane_8241.jpg', 'gen_airplane_2347.jpg']
+    # )
+    #
+    # return JsonResponse({
+    #     "success": "true",
+    #     "target_images_list": ['target_1010.jpg', 'target_1233.jpg'],
+    #     "output_images_list": ['op_3061.jpg', 'op_8273.jpg']
+    # })

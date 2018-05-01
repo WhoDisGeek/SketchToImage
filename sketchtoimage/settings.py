@@ -118,9 +118,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-
 MEDIA_ROOT = 'media'
 SKETCH_FILE_NAME = ''
 SKETCH_NAME = ''
 IMAGES_SIMILAR_TO_SKETCHES = ''
 MODEL_PATH = '/home/prime/Final Sem Project/code/models/research/slim'
+CNN_OUTPUT_PATH = '/home/prime/Django-Projects/SketchToImage/media/cnn1_output'
+INPUT_PATH = '/home/prime/Django-Projects/SketchToImage/media/input_sketches'
+OUTPUT_PATH = '/home/prime/Django-Projects/SketchToImage/media/output_sketches'
+GEN_OUTPUT_PATH = '/home/prime/Django-Projects/SketchToImage/media/gen_output'
+FEATURE_VECTORS_PATH = '/home/prime/Django-Projects/SketchToImage/media/feature_vectors'
+INTERMEDIATE_FILES_PATH = '/home/prime/Django-Projects/SketchToImage/media/intermediate'
+GAN_PATH_PYTHON = '/home/prime/Final\ Sem\ Project/code/gans/DCGAN-tensorflow/'
+GAN_PATH = '/home/prime/Final Sem Project/code/gans/DCGAN-tensorflow/'

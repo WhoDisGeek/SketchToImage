@@ -72,6 +72,7 @@ function execute(event) {
                 files = null;
                 $('#dashboard').append('<div>Execute Success<br/></div>');
                 for (i=0;i<data['target_images_list'].length;i++) {
+                    console.log(data['target_images_list'][i]);
                     var img = $('<img id="image_target"+i height="128" width="128">'); //Equivalent: $(document.createElement('img'))
                     img.attr('src', 'img/target/'+data['target_images_list'][i]);
                     img.appendTo('#targetimagediv');
@@ -79,7 +80,7 @@ function execute(event) {
 
                 for (i=0;i<data['output_images_list'].length;i++) {
                     var img = $('<img id="image_output"+i height="128" width="128">'); //Equivalent: $(document.createElement('img'))
-                    img.attr('src', 'img/op/'+data['output_images_list'][i]);
+                    img.attr('src', 'img/gen/'+data['output_images_list'][i]);
                     img.appendTo('#outputimagediv');
                 }
 
@@ -87,8 +88,20 @@ function execute(event) {
 
         }
         else {
+                 files = null;
+                $('#dashboard').append('<div>Comparision failed. Sent Generated</div>');
+                for (i=0;i<data['target_images_list'].length;i++) {
+                    var img = $('<img id="image_target"+i height="128" width="128">'); //Equivalent: $(document.createElement('img'))
+                    img.attr('src', 'img/target/'+data['target_images_list'][i]);
+                    img.appendTo('#targetimagediv');
+                }
 
-                $('#dashboard').append('<div>Execute Failure But Got Response</div>');
+                for (i=0;i<data['output_images_list'].length;i++) {
+                    var img = $('<img id="image_output"+i height="128" width="128">'); //Equivalent: $(document.createElement('img'))
+                    img.attr('src', 'img/gen/'+data['output_images_list'][i]);
+                    img.appendTo('#outputimagediv');
+                }
+
 
             }
         // $("#log").append(data["message"] + "<br />");

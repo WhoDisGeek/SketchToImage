@@ -20,7 +20,9 @@ def return_image(request, type=None, img_name='2'):
             image_path = os.path.join(BASE_DIR, MEDIA_ROOT, 'output_sketches', img_name)
         elif type == 'target':
             image_path = os.path.join(BASE_DIR, MEDIA_ROOT, 'cnn1_output', img_name)
-
+        elif type == 'gen':
+            image_path = os.path.join(BASE_DIR, MEDIA_ROOT, 'gen_output', img_name)
+        print('image path is..', image_path)
         try:
 
             with open(image_path, "rb") as f:
