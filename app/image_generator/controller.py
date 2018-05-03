@@ -19,6 +19,7 @@ def generate(classname):
     os.makedirs(INTERMEDIATE_FILES_PATH, exist_ok=True)
     with open(os.path.join(INTERMEDIATE_FILES_PATH, 'classname.txt'), 'w+') as cfile:
         cfile.write(classname + '\n')
+    os.makedirs(GEN_OUTPUT_PATH, exist_ok=True)
 
     # subprocess.call('/home/prime/call_gan.sh')
     # os.system('python /home/prime/Final\ Sem\ Project/code/gans/DCGAN-tensorflow/gan_main.py --dataset=' + classname)
