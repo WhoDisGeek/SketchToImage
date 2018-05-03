@@ -1,5 +1,7 @@
 import os
 
+import shutil
+
 from app.image_comparer import result
 from sketchtoimage.settings import MEDIA_ROOT, BASE_DIR, SKETCH_FILE_NAME
 
@@ -41,6 +43,8 @@ def compare(gen_images_list, target_images_list):
 
     #######################################################################################
     outfolder = os.path.join(BASE_DIR, MEDIA_ROOT, 'feature_vectors/gen')
+    shutil.rmtree(outfolder)
+    os.makedirs(outfolder, exist_ok=True)
     filenames = [i.decode("utf-8").split('/')[-1].split('.')[0] + '.txt' for i in feature_dataset_gen['filenames']]
     print('filenames[0] ', filenames[0])
     num_list = feature_dataset_gen['Logits'].tolist()
@@ -55,6 +59,8 @@ def compare(gen_images_list, target_images_list):
     ########################################################################################
 
     outfolder = os.path.join(BASE_DIR, MEDIA_ROOT, 'feature_vectors/target')
+    shutil.rmtree(outfolder)
+    os.makedirs(outfolder, exist_ok=True)
     filenames = [i.decode("utf-8").split('/')[-1].split('.')[0] + '.txt' for i in feature_dataset_target['filenames']]
     num_list = feature_dataset_target['Logits'].tolist()
     i = 0
