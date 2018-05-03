@@ -131,3 +131,4 @@ FEATURE_VECTORS_PATH = '/home/prime/Django-Projects/SketchToImage/media/feature_
 INTERMEDIATE_FILES_PATH = '/home/prime/Django-Projects/SketchToImage/media/intermediate'
 GAN_PATH_PYTHON = '/home/prime/Django-Projects/SketchToImage/app/image_generator/generator/'
 GAN_PATH = '/home/prime/Django-Projects/SketchToImage/app/image_generator/generator/'
+SKETCH_RECOGNIZER_PATH = '/home/prime/Django-Projects/SketchToImage/app/sketch_recognizer/recognizer/'
