@@ -2,7 +2,7 @@ import os, sys
 import subprocess
 from time import sleep
 
-from sketchtoimage.settings import INTERMEDIATE_FILES_PATH, GAN_PATH_PYTHON
+from sketchtoimage.settings import INTERMEDIATE_FILES_PATH, GAN_PATH_PYTHON, GEN_OUTPUT_PATH
 
 classname_mapping = {
     'airplane': 'airplane',
@@ -22,7 +22,10 @@ def generate(classname):
 
     # subprocess.call('/home/prime/call_gan.sh')
     # os.system('python /home/prime/Final\ Sem\ Project/code/gans/DCGAN-tensorflow/gan_main.py --dataset=' + classname)
-    os.system('python ' + os.path.join(GAN_PATH_PYTHON, 'gan_main.py') + ' --dataset=' + classname)
+    os.system('python ' + os.path.join(GAN_PATH_PYTHON, 'gan_main.py') + ' --dataset=' + classname
+              + ' --intermediate_path=' + INTERMEDIATE_FILES_PATH
+              + ' --output_path=' + GEN_OUTPUT_PATH
+              )
 
     sleep(10)
     with open(os.path.join(INTERMEDIATE_FILES_PATH, 'gen_images_list.txt'), 'r') as cfile:
