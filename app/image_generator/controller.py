@@ -1,4 +1,3 @@
-from app.image_generator.generator.gan_main import test_gan
 import os, sys
 import subprocess
 from time import sleep
